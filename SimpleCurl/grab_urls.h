@@ -7,6 +7,12 @@
 #ifndef GRAB_URLS_H
 #define GRAB_URLS_H
 
+/** 
+ * @author originally developed by the writer/s of Accelerated C++ 
+ * @author/implemented by Aaron Pitman 
+ * @version 2015.11.04
+ */
+
 using namespace std;
 
 bool not_url_char(char c)

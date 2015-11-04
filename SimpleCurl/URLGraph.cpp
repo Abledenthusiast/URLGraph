@@ -9,6 +9,11 @@
 #include "grab_urls.h"
 #include "Parser.h"
 
+/**
+ * @author Aaron Pitman 
+ * @version 2015.11.04
+ */
+
 using namespace std;
 
 	URLGraph::URLGraph(){}
@@ -55,7 +60,7 @@ void URLGraph::BFS(string &source, int levels, string targetWord)
 		vector<string> possibleTargets = wordSearch.getStrings(vertexPage);
 
 		//test to see if code is stopping after finding the target word on a page.
-		cout << vertex << endl;
+		//cout << vertex << endl;
 		std::vector<string>::iterator it;
 		it = find(possibleTargets.begin(), possibleTargets.end(), targetWord);
 			if(it != possibleTargets.end())
@@ -112,11 +117,12 @@ void URLGraph::BFS(string &source, int levels, string targetWord)
 				next = parent[next];
 			}
 			cout <<"Path: " << path << endl;
+			cout <<"TEST TEST TEST "<< endl;
 		}
 	}
 	else
 	{
-		cout << "Not found. " << numOfExam << endl;
+		cout << "Not found. " << numOfExam << levels << endl;
 	}
 		
 }

@@ -4,7 +4,11 @@
 #include <cctype>
 #include <map>
 
-
+/**
+ * @author Aaron Pitman 
+ * @version 2015.11.04
+ */
+ 
 using namespace std;
 
 #ifndef URLGRAPH_H
