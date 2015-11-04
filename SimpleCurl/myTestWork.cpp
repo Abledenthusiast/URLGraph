@@ -5,8 +5,6 @@
 #include <cctype>
 #include <stdlib.h>
 
-#include "SimpleCurl.h"
-#include "grab_urls.h"
 #include "URLGraph.h"
 
 using namespace std;
@@ -51,25 +49,7 @@ int main()//int argc, char *argv[])
 		cout << "wow... \nSetting levels to default of 2" << endl;
 		levels = 2;
 	}
-	
 
-	//init the graph
-	map<string, vector<string> > graph;
-	vector<string> neighbors; 
-	grab_urls grabURLs;
-
-	SimpleCurl httpGrabber(input);//argv[1]);
-	string doc = httpGrabber.getRetrievedDocument();	
-
-	if (httpGrabber.getURL(input) !=-1)
-	{
-        	httpGrabber.getRetrievedDocument();
-        	neighbors = grabURLs.find_urls(doc);
-        	
-        }
-	else
-		cout << "Could not retrieve document" << endl;
-		
 	URLGraph search;
 	string origin = input; //argv[1];
 	search.BFS(origin, levels, target);
