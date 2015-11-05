@@ -34,7 +34,7 @@ class Parser
      */
 
 
-    vector<string> getStrings(string html, string target);
+    bool getStrings(string html, string target);
 
     string toLowerCase(string inputString);
 

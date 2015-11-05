@@ -59,14 +59,16 @@ void URLGraph::BFS(string &source, int levels, string targetWord)
 		vector<string> neighbors = getNeighbors.find_urls(vertexPage);
 
 		// search for target word on page
-		vector<string> possibleTargets = wordSearch.getStrings(vertexPage, targetWord);
+		//vector<string> possibleTargets = wordSearch.getStrings(vertexPage, targetWord);
 
 		//test to see if code is stopping after finding the target word on a page.
 		//cout << vertex << endl;
 
-		std::vector<string>::iterator it;
-		it = find(possibleTargets.begin(), possibleTargets.end(), targetWord);
-			if(it != possibleTargets.end())
+		// search for target word on page
+		bool possibleTargets = wordSearch.getStrings(vertexPage, targetWord);
+		//std::vector<string>::iterator it;
+		//it = find(possibleTargets.begin(), possibleTargets.end(), targetWord);
+			if(possibleTargets)
 			{
 				//stop the while loop
 				found = true;

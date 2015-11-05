@@ -29,29 +29,30 @@ using namespace std;
      * @return The next command from the user.
      */
 
-    //Get the input and return each individual word inside of a vector
-    vector<string> Parser::getStrings(string html,string target) 
+    //Get the input and return each individual word inside of a vectorvector<string> 
+     bool Parser::getStrings(string html,string target) 
     {
         string inputLine;                //reader.nextLine().trim().toLowerCase();
-        inputLine = toLowerCase(html); // transform the words to all lowercase
+        inputLine = toLowerCase(html); 
+        // transform the words to all lowercase
+        bool found = false;
 
         vector<string> words;
         int location = inputLine.find_first_of(" ><");
         while(location != string::npos)
         {
             string word = inputLine.substr(0,location);
-            if(word != "")
+            if(word == target)//if(word != "")
             {
-                words.push_back(word);
-                cout << word << endl;
-               
+                found = true;
+
             }
             inputLine = inputLine.substr(location+1);
             location = inputLine.find_first_of(" ><");
         }
         
         
-        return words;
+        return found;
     }
 
    
