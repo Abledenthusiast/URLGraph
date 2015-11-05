@@ -16,6 +16,7 @@
 
 using namespace std;
 
+
 	URLGraph::URLGraph(){}
 	
 void URLGraph::BFS(string &source, int levels, string targetWord)
@@ -25,6 +26,7 @@ void URLGraph::BFS(string &source, int levels, string targetWord)
 	*/
 	SimpleCurl httpGrabber;
 	string vertex;
+
 
 	string vertexPage;
 	Parser wordSearch;
@@ -48,25 +50,27 @@ void URLGraph::BFS(string &source, int levels, string targetWord)
 		Q.erase(Q.begin());	// actually delete Q.front
 		
 		
-
+		// grab the page the vertex refers to
 		if (httpGrabber.getURL(vertex) !=-1)
 		{
 			vertexPage = httpGrabber.getRetrievedDocument();
 		}
-
+		//find all of the neighbors
 		vector<string> neighbors = getNeighbors.find_urls(vertexPage);
 
 		// search for target word on page
-		vector<string> possibleTargets = wordSearch.getStrings(vertexPage);
+		vector<string> possibleTargets = wordSearch.getStrings(vertexPage, targetWord);
 
 		//test to see if code is stopping after finding the target word on a page.
 		//cout << vertex << endl;
+
 		std::vector<string>::iterator it;
 		it = find(possibleTargets.begin(), possibleTargets.end(), targetWord);
 			if(it != possibleTargets.end())
 			{
 				//stop the while loop
 				found = true;
+				continue;
 			}
 
 		//----------
@@ -85,7 +89,7 @@ void URLGraph::BFS(string &source, int levels, string targetWord)
 
 				Q.push_back(node);
 				// test code
-				//cout << node << endl;
+				cout << node << endl;
 				//cout << color[node] << endl;
 				//cout << distance[node] << endl;				
 			}
@@ -93,6 +97,8 @@ void URLGraph::BFS(string &source, int levels, string targetWord)
 
 		color[vertex] = "black"; // don't visit me anymore! u.color = black
 	}
+	// give some space
+	cout << "" << endl;
 	/*
 	*	This part prints out the path, if the word was found
 	*/
@@ -117,12 +123,13 @@ void URLGraph::BFS(string &source, int levels, string targetWord)
 				next = parent[next];
 			}
 			cout <<"Path: " << path << endl;
-			cout <<"TEST TEST TEST "<< endl;
+			
 		}
 	}
 	else
 	{
-		cout << "Not found. " << numOfExam << levels << endl;
+		cout << "Not found. Number of examined pages: " << numOfExam << 
+			" Number of levels: " << levels << endl;
 	}
 		
 }

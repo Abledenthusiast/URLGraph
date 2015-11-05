@@ -67,7 +67,7 @@ url_end(string::const_iterator b, string::const_iterator e)
 string::const_iterator
 url_beg(string::const_iterator b, string::const_iterator e)
 {
-	static const string sep = "://";
+	static const string sep = "href=\"";
 
 	typedef string::const_iterator iter;
 
@@ -79,11 +79,7 @@ url_beg(string::const_iterator b, string::const_iterator e)
 		if(i !=b && i + sep.size() != e)
 		{
 			// beg is the beginning of the protocol-name
-			iter beg = i;
-			while (beg  != b && isalpha(beg[-1]))
-			{
-				--beg;
-			}
+			iter beg = i+6;
 			if(beg != i && !not_url_char(i[sep.size()]))
 			{
 				return beg;

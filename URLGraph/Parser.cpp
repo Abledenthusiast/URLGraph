@@ -1,8 +1,8 @@
 
 #include <iostream>
 #include <string>
-#include <vector>
 
+#include <vector>
 
 
 #include "Parser.h"
@@ -15,6 +15,7 @@
  */
 
 using namespace std;
+
     /**
      * Create a parser to read from the terminal window.
      */
@@ -29,30 +30,31 @@ using namespace std;
      */
 
     //Get the input and return each individual word inside of a vector
-    vector<string> Parser::getStrings(string html) 
+    vector<string> Parser::getStrings(string html,string target) 
     {
         string inputLine;                //reader.nextLine().trim().toLowerCase();
-        inputLine = html;
-        inputLine = toLowerCase(inputLine); // transform the words to all lowercase
-        
+        inputLine = toLowerCase(html); // transform the words to all lowercase
 
         vector<string> words;
-        int location = inputLine.find_first_of(" ");
-            //take each word input and put them into a vector (basically split)
+        int location = inputLine.find_first_of(" ><");
         while(location != string::npos)
         {
             string word = inputLine.substr(0,location);
             if(word != "")
             {
                 words.push_back(word);
+                cout << word << endl;
+               
             }
             inputLine = inputLine.substr(location+1);
-            location = inputLine.find_first_of(" ");
+            location = inputLine.find_first_of(" ><");
         }
-        words.push_back(inputLine);
+        
         
         return words;
     }
+
+   
     // take each word and make it lower case
      string Parser::toLowerCase(string inputString)
     {

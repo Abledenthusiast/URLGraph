@@ -9,8 +9,8 @@ LIBS = -L/usr/local/lib
 
 CFLAGS  = -g
 
-webPageSearch: myTestWork.o URLGraph.o SimpleCurl.o Parser.o 
-	$(CC) -o webPageSearch $(INCLUDE) $(LIBS) $(CFLAGS) URLGraph.o myTestWork.o SimpleCurl.o Parser.o -lcurl
+webPageSearch: main.o URLGraph.o SimpleCurl.o Parser.o 
+	$(CC) -o webPageSearch $(INCLUDE) $(LIBS) $(CFLAGS) URLGraph.o main.o SimpleCurl.o Parser.o -lcurl
 
 .cpp.o:	
 	$(CC) $(INCLUDE) $(CFLAGS) $(LIBS) -c $< -o $@

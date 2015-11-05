@@ -1,8 +1,11 @@
 #include <iostream>
 #include <string>
+#include <string.h>
 #include <vector>
+#include <stdio.h>
 
 using namespace std;
+
 
 #ifndef Parser_H
 #define Parser_H
@@ -31,7 +34,7 @@ class Parser
      */
 
 
-    vector<string> getStrings(string html);
+    vector<string> getStrings(string html, string target);
 
     string toLowerCase(string inputString);
 
