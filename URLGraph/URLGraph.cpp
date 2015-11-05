@@ -51,10 +51,12 @@ void URLGraph::BFS(string &source, int levels, string targetWord)
 		
 		
 		// grab the page the vertex refers to
-		if (httpGrabber.getURL(vertex) !=-1)
+		if(httpGrabber.getURL(vertex) !=-1)
 		{
+			//while loop ignores bad links and moves onto the next node
 			vertexPage = httpGrabber.getRetrievedDocument();
 		}
+		
 		//find all of the neighbors
 		vector<string> neighbors = getNeighbors.find_urls(vertexPage);
 
@@ -124,6 +126,7 @@ void URLGraph::BFS(string &source, int levels, string targetWord)
 				path = next + " -> " + path;
 				next = parent[next];
 			}
+			cout << "Target was found " << endl;
 			cout <<"Path: " << path << endl;
 			
 		}

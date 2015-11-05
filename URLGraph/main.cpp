@@ -42,8 +42,21 @@ int main()
 		return -1;
 	}
 	//more prompts
-	cout << "Enter the url: " << endl;
-	getline(cin, input);
+	while(input=="")
+	{
+		cout << "Enter the url: " << endl;
+		getline(cin, input);
+		if(input=="")
+		{
+			cout << "You must input a source url." << endl;
+			cout << "Type 0 to quit." << endl;
+		}
+	}
+	if(input=="0")
+	{
+		return -1;
+	}
+
 	cout << "How many levels?: " << endl;
 	getline(cin, convert);
 	//default search level
