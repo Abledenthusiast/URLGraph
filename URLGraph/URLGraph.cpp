@@ -51,12 +51,13 @@ void URLGraph::BFS(string &source, int levels, string targetWord)
 		
 		
 		// grab the page the vertex refers to
-		if(httpGrabber.getURL(vertex) !=-1)
+		while(httpGrabber.getURL(vertex) ==-1)
 		{
 			//while loop ignores bad links and moves onto the next node
-			vertexPage = httpGrabber.getRetrievedDocument();
+			vertex = Q.front(); 
+			Q.erase(Q.begin());
 		}
-		
+		vertexPage = httpGrabber.getRetrievedDocument();
 		//find all of the neighbors
 		vector<string> neighbors = getNeighbors.find_urls(vertexPage);
 
