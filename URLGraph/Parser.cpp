@@ -8,10 +8,8 @@
 #include "Parser.h"
 
 /**
- * @author  Michael Kölling and David J. Barnes
  * @author Aaron Pitman 
- * @version 2011.08.08
- * @version 2015.10.03
+ * @version 2015.11.05
  */
 
 using namespace std;
@@ -20,21 +18,17 @@ using namespace std;
      * Create a parser to read from the terminal window.
      */
     Parser::Parser() 
-    {
-       // commands = CommandWords();
-       // reader = getInput();
-    }
+    {}
 
-    /**
-     * @return The next command from the user.
-     */
-
-    //Get the input and return each individual word inside of a vectorvector<string> 
-     bool Parser::getStrings(string html,string target) 
+    /*
+    * take an input string and check if a target word is in the string
+    * returns true if the target is found
+    */
+    bool Parser::searchTarget(string html,string target) 
     {
         string inputLine;                //reader.nextLine().trim().toLowerCase();
-        inputLine = toLowerCase(html); 
-        // transform the words to all lowercase
+        inputLine = toLowerCase(html); // transform the words to all lowercase
+        
         bool found = false;
 
         vector<string> words;
@@ -42,9 +36,10 @@ using namespace std;
         while(location != string::npos)
         {
             string word = inputLine.substr(0,location);
-            if(word == target)//if(word != "")
+            if(word == target)
             {
                 found = true;
+                return found;
 
             }
             inputLine = inputLine.substr(location+1);

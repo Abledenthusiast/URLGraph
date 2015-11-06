@@ -67,6 +67,10 @@ int main()
 		// set #levels to input
 		levels = stoi(convert);
 	}
+	if(convert=="")
+	{
+		cout << "setting base level of 2" << endl;
+	}
 	//Negative numbers don't work...
 	if(levels<=0)
 	{

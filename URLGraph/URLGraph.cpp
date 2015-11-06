@@ -49,7 +49,6 @@ void URLGraph::BFS(string &source, int levels, string targetWord)
 		vertex = Q.front(); // vertex = Q.pop_front
 		Q.erase(Q.begin());	// actually delete Q.front
 		
-		
 		// grab the page the vertex refers to
 		while(httpGrabber.getURL(vertex) ==-1)
 		{
@@ -58,27 +57,28 @@ void URLGraph::BFS(string &source, int levels, string targetWord)
 			Q.erase(Q.begin());
 		}
 		vertexPage = httpGrabber.getRetrievedDocument();
+
 		//find all of the neighbors
 		vector<string> neighbors = getNeighbors.find_urls(vertexPage);
-
-		// search for target word on page
-		//vector<string> possibleTargets = wordSearch.getStrings(vertexPage, targetWord);
-
 		//test to see if code is stopping after finding the target word on a page.
 		//cout << vertex << endl;
 
 		// search for target word on page
-		bool possibleTargets = wordSearch.getStrings(vertexPage, targetWord);
+		
+		found = wordSearch.searchTarget(vertexPage, targetWord);
 		//std::vector<string>::iterator it;
 		//it = find(possibleTargets.begin(), possibleTargets.end(), targetWord);
+
+		/* the floowing is irrelevant code now. the variable 'found' is simply 
+			used with the while loop and is set based upon what the parser returns.
+
 			if(possibleTargets)
 			{
-				//stop the while loop
 				found = true;
 				continue;
 			}
-
-		//----------
+		*/
+	
 		for(vector<string>::iterator v = neighbors.begin();
 	           v != neighbors.end(); v++)
 		{			
@@ -93,17 +93,18 @@ void URLGraph::BFS(string &source, int levels, string targetWord)
 				distance[node] = distance[vertex] + 1;
 
 				Q.push_back(node);
-				// test code
-				cout << node << endl;
+				// test code EDIT: this was a poor choice as it makes it 
+				//	appear like the code does not stop once found
+				//cout << node << endl;
 				//cout << color[node] << endl;
 				//cout << distance[node] << endl;				
 			}
 		}
 
-		color[vertex] = "black"; // don't visit me anymore! u.color = black
+		color[vertex] = "black"; //u.color = black
 	}
 	// give some space
-	cout << "" << endl;
+	cout << " " << endl;
 	/*
 	*	This part prints out the path, if the word was found
 	*/

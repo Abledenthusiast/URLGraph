@@ -18,24 +18,16 @@ class Parser
 {
     private:
        
-        vector<string> reader;         // source of command input
+        vector<string> reader;      
     public:
-    /**
-     * Create a parser to read from the terminal window.
-     */
+
     Parser(); 
-    /**
-     * @return The next command from the user.
-     */
-
-
-    /**
-     * Print out a list of valid command words.
-     */
-
-
-    bool getStrings(string html, string target);
-
+    /*
+    * take an input string and check if a target word is in the string
+    * returns true if the target is found
+    */
+    bool searchTarget(string html, string target);
+     // take each word and make it lower case
     string toLowerCase(string inputString);
 
 };
