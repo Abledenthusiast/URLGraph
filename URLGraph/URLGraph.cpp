@@ -17,7 +17,7 @@
 using namespace std;
 
 
-	URLGraph::URLGraph(){}
+URLGraph::URLGraph(){}
 	
 void URLGraph::BFS(string &source, int levels, string targetWord)
 {
@@ -60,24 +60,9 @@ void URLGraph::BFS(string &source, int levels, string targetWord)
 
 		//find all of the neighbors
 		vector<string> neighbors = getNeighbors.find_urls(vertexPage);
-		//test to see if code is stopping after finding the target word on a page.
-		//cout << vertex << endl;
 
-		// search for target word on page
-		
+		/* search for target word on page */	
 		found = wordSearch.searchTarget(vertexPage, targetWord);
-		//std::vector<string>::iterator it;
-		//it = find(possibleTargets.begin(), possibleTargets.end(), targetWord);
-
-		/* the floowing is irrelevant code now. the variable 'found' is simply 
-			used with the while loop and is set based upon what the parser returns.
-
-			if(possibleTargets)
-			{
-				found = true;
-				continue;
-			}
-		*/
 	
 		for(vector<string>::iterator v = neighbors.begin();
 	           v != neighbors.end(); v++)
@@ -92,29 +77,26 @@ void URLGraph::BFS(string &source, int levels, string targetWord)
 				parent[node] = vertex;
 				distance[node] = distance[vertex] + 1;
 
-				Q.push_back(node);
-				// test code EDIT: this was a poor choice as it makes it 
-				//	appear like the code does not stop once found
-				//cout << node << endl;
-				//cout << color[node] << endl;
-				//cout << distance[node] << endl;				
+				Q.push_back(node);			
 			}
 		}
 
 		color[vertex] = "black"; //u.color = black
 	}
+
 	// give some space
 	cout << " " << endl;
+
 	/*
 	*	This part prints out the path, if the word was found
 	*/
 	if(found)
 	{
-
 		string next;
 		string path;
 		next = parent[vertex];
 		path = vertex;
+		
 		//no parent means target was found on source page
 		if(next=="")
 		{

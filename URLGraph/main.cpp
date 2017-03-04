@@ -15,10 +15,7 @@
  */
 
 using namespace std;
-
-
-int main()
-{
+int startSearch() {
 	string target;
 	string input;
 	string convert;	
@@ -79,17 +76,40 @@ int main()
 	}
 
 	URLGraph search;
-	string origin = input; //argv[1];
-	search.BFS(origin, levels, target);
-	/*
-		--- this is old test code --- 
-	 for(vector<string>::iterator url = neighbors.begin();
-            url != neighbors.end(); url++)
-	 {
-	 	cout << *url << endl;
-	 }
-	*/
+	string origin = input;
 
+	/* clock keeps track of time for process to execute and outputs the time in milliseconds */
+	int start_s=clock();
+	/* start BFS search */
+	search.BFS(origin, levels, target);
+	/* stop clock, the process finished */
+	int stop_s=clock();
+	cout << "process took: " << (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000 << "ms" << endl;
+
+	return 0;
+}
+
+int main()
+{
+	bool live = true;
+	string input = "";
+	int mainRet = 0;
+
+	while(true) {
+		/* main start to the program */
+		mainRet = startSearch();
+
+		/* if user wants to try again or not */
+		cout << "Would you like to try again?: " << endl;
+		cout << "Type: 'yes' to continue. Type 'no' to stop" << endl;
+		getline(cin, input);
+
+		if(input == "no") {
+			cout << "thanks for stopping by!" << endl;
+			break;
+		}
+	}
+	return mainRet;
 }
 
 
