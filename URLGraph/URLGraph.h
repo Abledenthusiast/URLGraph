@@ -26,6 +26,7 @@ public:
 	URLGraph();
 
 	void BFS(string &source, int levels, string targetWord);
+	void DFS(string &source, int levels, string targetWord);
 
 };
 #endif

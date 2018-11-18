@@ -122,3 +122,7 @@ void URLGraph::BFS(string &source, int levels, string targetWord)
 	}
 		
 }
+
+void URLGraph::DFS(string &source, int levels, string targetWord) {
+	
+}
